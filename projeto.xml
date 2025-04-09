@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="5e3bbc80-c1ef-4b06-9f06-8633d4bd100d" activeEnvironment="Default" name="HospitalSystem-1" soapui-version="5.8.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="81347cb1-4e68-495a-bc3a-7c5dac272c1d" wsaVersion="NONE" name="ConsultaWSimpServiceSoapBinding" type="wsdl" bindingName="{http://hospitalsystem.example.com/}ConsultaWSimpServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp?wsdl"><con:part><con:url>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ConsultaWSimpService" targetNamespace="http://hospitalsystem.example.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://hospitalsystem.example.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://interfaces.hospitalsystem.example.com/">
+  <wsdl:import location="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp?wsdl=ConsultaWS.wsdl" namespace="http://interfaces.hospitalsystem.example.com/"></wsdl:import>
+  <wsdl:binding name="ConsultaWSimpServiceSoapBinding" type="ns1:ConsultaWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="cancelConsulta">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="cancelConsulta">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="cancelConsultaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addConsulta">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addConsulta">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addConsultaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listConsultas">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listConsultas">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listConsultasResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultaWSimpService">
+    <wsdl:port binding="tns:ConsultaWSimpServiceSoapBinding" name="ConsultaWSimpPort">
+      <soap:address location="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp?wsdl=ConsultaWS.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ConsultaWS" targetNamespace="http://interfaces.hospitalsystem.example.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://interfaces.hospitalsystem.example.com/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://interfaces.hospitalsystem.example.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://interfaces.hospitalsystem.example.com/">
+      <xs:element name="addConsulta" type="tns:addConsulta"/>
+      <xs:element name="addConsultaResponse" type="tns:addConsultaResponse"/>
+      <xs:element name="cancelConsulta" type="tns:cancelConsulta"/>
+      <xs:element name="cancelConsultaResponse" type="tns:cancelConsultaResponse"/>
+      <xs:element name="listConsultas" type="tns:listConsultas"/>
+      <xs:element name="listConsultasResponse" type="tns:listConsultasResponse"/>
+      <xs:complexType name="cancelConsulta">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="cancelConsultaResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="addConsulta">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:consultaInsertRequestDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="consultaInsertRequestDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataHora" type="tns:localDateTime"/>
+          <xs:element name="medicoId" type="xs:int"/>
+          <xs:element name="pacienteId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType final="extension restriction" name="localDateTime">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="addConsultaResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="listConsultas">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="listConsultasResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:consulta"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="consulta">
+        <xs:sequence>
+          <xs:element name="ativo" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="dataHora" type="tns:localDateTime"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="medico" type="tns:medico"/>
+          <xs:element minOccurs="0" name="paciente" type="tns:paciente"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="medico">
+        <xs:sequence>
+          <xs:element name="ativo" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="crm" type="xs:string"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="endereco" type="xs:string"/>
+          <xs:element minOccurs="0" name="especialidade" type="xs:string"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="nome" type="xs:string"/>
+          <xs:element minOccurs="0" name="telefone" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="paciente">
+        <xs:sequence>
+          <xs:element name="ativo" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="cpf" type="xs:string"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="endereco" type="xs:string"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="nome" type="xs:string"/>
+          <xs:element minOccurs="0" name="telefone" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addConsultaResponse">
+    <wsdl:part element="ns1:addConsultaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelConsulta">
+    <wsdl:part element="ns1:cancelConsulta" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listConsultasResponse">
+    <wsdl:part element="ns1:listConsultasResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addConsulta">
+    <wsdl:part element="ns1:addConsulta" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listConsultas">
+    <wsdl:part element="ns1:listConsultas" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelConsultaResponse">
+    <wsdl:part element="ns1:cancelConsultaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ConsultaWS">
+    <wsdl:operation name="cancelConsulta">
+      <wsdl:input message="ns1:cancelConsulta" name="cancelConsulta"></wsdl:input>
+      <wsdl:output message="ns1:cancelConsultaResponse" name="cancelConsultaResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addConsulta">
+      <wsdl:input message="ns1:addConsulta" name="addConsulta"></wsdl:input>
+      <wsdl:output message="ns1:addConsultaResponse" name="addConsultaResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listConsultas">
+      <wsdl:input message="ns1:listConsultas" name="listConsultas"></wsdl:input>
+      <wsdl:output message="ns1:listConsultasResponse" name="listConsultasResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp</con:endpoint></con:endpoints><con:operation id="8760df8e-36b6-455f-82f0-85e1c416de5e" isOneWay="false" action="" name="addConsulta" bindingOperationName="addConsulta" type="Request-Response" outputName="addConsultaResponse" inputName="addConsulta" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f8a28334-4204-4633-9ef9-a55d62792664" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:addConsulta>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <!--Optional:-->\r
+            <dataHora/>\r
+            <medicoId>?</medicoId>\r
+            <pacienteId>?</pacienteId>\r
+         </arg0>\r
+      </int:addConsulta>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/ConsultaWS/addConsulta"/></con:call></con:operation><con:operation id="6b246c90-4b78-44a7-8f0e-750b4c4765c8" isOneWay="false" action="" name="cancelConsulta" bindingOperationName="cancelConsulta" type="Request-Response" outputName="cancelConsultaResponse" inputName="cancelConsulta" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a01021fb-f2e6-4512-a717-7e883477faf4" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:cancelConsulta>\r
+         <arg0>?</arg0>\r
+         <!--Optional:-->\r
+         <arg1>?</arg1>\r
+      </int:cancelConsulta>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/ConsultaWS/cancelConsulta"/></con:call></con:operation><con:operation id="1f00c609-b929-4059-842a-e5443f2eb646" isOneWay="false" action="" name="listConsultas" bindingOperationName="listConsultas" type="Request-Response" outputName="listConsultasResponse" inputName="listConsultas" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="71cf2fa1-edbf-48c0-ab13-f07127d3beb0" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/ConsultaWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:listConsultas/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/ConsultaWS/listConsultas"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="15377523-6285-43f4-b7e6-7533e341deb0" wsaVersion="NONE" name="PacienteWSimpServiceSoapBinding" type="wsdl" bindingName="{http://hospitalsystem.example.com/}PacienteWSimpServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp?wsdl"><con:part><con:url>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PacienteWSimpService" targetNamespace="http://hospitalsystem.example.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://hospitalsystem.example.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://interfaces.hospitalsystem.example.com/">
+  <wsdl:import location="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp?wsdl=PacienteWS.wsdl" namespace="http://interfaces.hospitalsystem.example.com/"></wsdl:import>
+  <wsdl:binding name="PacienteWSimpServiceSoapBinding" type="ns1:PacienteWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addPaciente">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addPaciente">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addPacienteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePaciente">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updatePaciente">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updatePacienteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePaciente">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deletePaciente">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deletePacienteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listPacientes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listPacientes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listPacientesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PacienteWSimpService">
+    <wsdl:port binding="tns:PacienteWSimpServiceSoapBinding" name="PacienteWSimpPort">
+      <soap:address location="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp?wsdl=PacienteWS.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PacienteWS" targetNamespace="http://interfaces.hospitalsystem.example.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://interfaces.hospitalsystem.example.com/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://interfaces.hospitalsystem.example.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://interfaces.hospitalsystem.example.com/">
+      <xs:element name="addPaciente" type="tns:addPaciente"/>
+      <xs:element name="addPacienteResponse" type="tns:addPacienteResponse"/>
+      <xs:element name="deletePaciente" type="tns:deletePaciente"/>
+      <xs:element name="deletePacienteResponse" type="tns:deletePacienteResponse"/>
+      <xs:element name="listPacientes" type="tns:listPacientes"/>
+      <xs:element name="listPacientesResponse" type="tns:listPacientesResponse"/>
+      <xs:element name="updatePaciente" type="tns:updatePaciente"/>
+      <xs:element name="updatePacienteResponse" type="tns:updatePacienteResponse"/>
+      <xs:complexType name="addPaciente">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:pacienteInsertRequestDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="pacienteInsertRequestDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cpf" type="xs:string"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="endereco" type="xs:string"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="nome" type="xs:string"/>
+          <xs:element minOccurs="0" name="telefone" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addPacienteResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="updatePaciente">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:pacienteInsertRequestDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updatePacienteResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="deletePaciente">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deletePacienteResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="listPacientes">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="listPacientesResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pacienteInsertRequestDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addPacienteResponse">
+    <wsdl:part element="ns1:addPacienteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addPaciente">
+    <wsdl:part element="ns1:addPaciente" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePacienteResponse">
+    <wsdl:part element="ns1:updatePacienteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePaciente">
+    <wsdl:part element="ns1:deletePaciente" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listPacientes">
+    <wsdl:part element="ns1:listPacientes" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePacienteResponse">
+    <wsdl:part element="ns1:deletePacienteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePaciente">
+    <wsdl:part element="ns1:updatePaciente" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listPacientesResponse">
+    <wsdl:part element="ns1:listPacientesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PacienteWS">
+    <wsdl:operation name="addPaciente">
+      <wsdl:input message="ns1:addPaciente" name="addPaciente"></wsdl:input>
+      <wsdl:output message="ns1:addPacienteResponse" name="addPacienteResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePaciente">
+      <wsdl:input message="ns1:updatePaciente" name="updatePaciente"></wsdl:input>
+      <wsdl:output message="ns1:updatePacienteResponse" name="updatePacienteResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePaciente">
+      <wsdl:input message="ns1:deletePaciente" name="deletePaciente"></wsdl:input>
+      <wsdl:output message="ns1:deletePacienteResponse" name="deletePacienteResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listPacientes">
+      <wsdl:input message="ns1:listPacientes" name="listPacientes"></wsdl:input>
+      <wsdl:output message="ns1:listPacientesResponse" name="listPacientesResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp</con:endpoint></con:endpoints><con:operation id="c7715cb1-2fa1-4486-8579-1101815c6d89" isOneWay="false" action="" name="addPaciente" bindingOperationName="addPaciente" type="Request-Response" outputName="addPacienteResponse" inputName="addPaciente" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0cfcce13-bb03-48d3-a8a2-12111c24e65d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:addPaciente>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <!--Optional:-->\r
+            <cpf>?</cpf>\r
+            <!--Optional:-->\r
+            <email>?</email>\r
+            <!--Optional:-->\r
+            <endereco>?</endereco>\r
+            <id>?</id>\r
+            <!--Optional:-->\r
+            <nome>?</nome>\r
+            <!--Optional:-->\r
+            <telefone>?</telefone>\r
+         </arg0>\r
+      </int:addPaciente>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/PacienteWS/addPaciente"/></con:call></con:operation><con:operation id="88b71d12-aa36-4a28-b732-4acbabd06bc3" isOneWay="false" action="" name="deletePaciente" bindingOperationName="deletePaciente" type="Request-Response" outputName="deletePacienteResponse" inputName="deletePaciente" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="500da51d-fe60-4ff9-aa44-70532f8711ab" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:deletePaciente>\r
+         <arg0>?</arg0>\r
+      </int:deletePaciente>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/PacienteWS/deletePaciente"/></con:call></con:operation><con:operation id="bd202f65-0f04-47ae-a9f8-498338d32edf" isOneWay="false" action="" name="listPacientes" bindingOperationName="listPacientes" type="Request-Response" outputName="listPacientesResponse" inputName="listPacientes" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8ca848d1-4522-4217-b9b6-c541095b64c9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:listPacientes/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/PacienteWS/listPacientes"/></con:call></con:operation><con:operation id="c213fff1-6353-4695-a9ed-1ced46e4e1c1" isOneWay="false" action="" name="updatePaciente" bindingOperationName="updatePaciente" type="Request-Response" outputName="updatePacienteResponse" inputName="updatePaciente" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fb94bcc3-8cf0-4838-9559-b83aee132346" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/PacienteWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:updatePaciente>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <!--Optional:-->\r
+            <cpf>?</cpf>\r
+            <!--Optional:-->\r
+            <email>?</email>\r
+            <!--Optional:-->\r
+            <endereco>?</endereco>\r
+            <id>?</id>\r
+            <!--Optional:-->\r
+            <nome>?</nome>\r
+            <!--Optional:-->\r
+            <telefone>?</telefone>\r
+         </arg0>\r
+      </int:updatePaciente>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/PacienteWS/updatePaciente"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="d8b374de-f8e5-4da6-9795-b8b557fd5519" wsaVersion="NONE" name="MedicoWSimpServiceSoapBinding" type="wsdl" bindingName="{http://hospitalsystem.example.com/}MedicoWSimpServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp?wsdl"><con:part><con:url>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="MedicoWSimpService" targetNamespace="http://hospitalsystem.example.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://hospitalsystem.example.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://interfaces.hospitalsystem.example.com/">
+  <wsdl:import location="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp?wsdl=MedicoWS.wsdl" namespace="http://interfaces.hospitalsystem.example.com/"></wsdl:import>
+  <wsdl:binding name="MedicoWSimpServiceSoapBinding" type="ns1:MedicoWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="deleteMedico">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteMedico">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteMedicoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMedico">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addMedico">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addMedicoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMedico">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateMedico">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateMedicoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listMedicos">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listMedicos">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listMedicosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MedicoWSimpService">
+    <wsdl:port binding="tns:MedicoWSimpServiceSoapBinding" name="MedicoWSimpPort">
+      <soap:address location="http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp?wsdl=MedicoWS.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="MedicoWS" targetNamespace="http://interfaces.hospitalsystem.example.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://interfaces.hospitalsystem.example.com/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://interfaces.hospitalsystem.example.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://interfaces.hospitalsystem.example.com/">
+      <xs:element name="addMedico" type="tns:addMedico"/>
+      <xs:element name="addMedicoResponse" type="tns:addMedicoResponse"/>
+      <xs:element name="deleteMedico" type="tns:deleteMedico"/>
+      <xs:element name="deleteMedicoResponse" type="tns:deleteMedicoResponse"/>
+      <xs:element name="listMedicos" type="tns:listMedicos"/>
+      <xs:element name="listMedicosResponse" type="tns:listMedicosResponse"/>
+      <xs:element name="updateMedico" type="tns:updateMedico"/>
+      <xs:element name="updateMedicoResponse" type="tns:updateMedicoResponse"/>
+      <xs:complexType name="deleteMedico">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteMedicoResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="addMedico">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:medicoInsertRequestDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="medicoInsertRequestDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="crm" type="xs:string"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="endereco" type="xs:string"/>
+          <xs:element minOccurs="0" name="especialidade" type="xs:string"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="nome" type="xs:string"/>
+          <xs:element minOccurs="0" name="telefone" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addMedicoResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="updateMedico">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:medicoInsertRequestDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateMedicoResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="listMedicos">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="listMedicosResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:medicoInsertRequestDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="deleteMedicoResponse">
+    <wsdl:part element="ns1:deleteMedicoResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMedicoResponse">
+    <wsdl:part element="ns1:addMedicoResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMedicoResponse">
+    <wsdl:part element="ns1:updateMedicoResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listMedicos">
+    <wsdl:part element="ns1:listMedicos" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteMedico">
+    <wsdl:part element="ns1:deleteMedico" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMedico">
+    <wsdl:part element="ns1:addMedico" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMedico">
+    <wsdl:part element="ns1:updateMedico" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listMedicosResponse">
+    <wsdl:part element="ns1:listMedicosResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MedicoWS">
+    <wsdl:operation name="deleteMedico">
+      <wsdl:input message="ns1:deleteMedico" name="deleteMedico"></wsdl:input>
+      <wsdl:output message="ns1:deleteMedicoResponse" name="deleteMedicoResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMedico">
+      <wsdl:input message="ns1:addMedico" name="addMedico"></wsdl:input>
+      <wsdl:output message="ns1:addMedicoResponse" name="addMedicoResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMedico">
+      <wsdl:input message="ns1:updateMedico" name="updateMedico"></wsdl:input>
+      <wsdl:output message="ns1:updateMedicoResponse" name="updateMedicoResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listMedicos">
+      <wsdl:input message="ns1:listMedicos" name="listMedicos"></wsdl:input>
+      <wsdl:output message="ns1:listMedicosResponse" name="listMedicosResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp</con:endpoint></con:endpoints><con:operation id="5b7b1aa1-a554-4764-86c5-99238fa84571" isOneWay="false" action="" name="addMedico" bindingOperationName="addMedico" type="Request-Response" outputName="addMedicoResponse" inputName="addMedico" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0e960af9-1f69-40a0-9f77-fa18d7c1c05a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:addMedico>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <!--Optional:-->\r
+            <crm>?</crm>\r
+            <!--Optional:-->\r
+            <email>?</email>\r
+            <!--Optional:-->\r
+            <endereco>?</endereco>\r
+            <!--Optional:-->\r
+            <especialidade>?</especialidade>\r
+            <id>?</id>\r
+            <!--Optional:-->\r
+            <nome>?</nome>\r
+            <!--Optional:-->\r
+            <telefone>?</telefone>\r
+         </arg0>\r
+      </int:addMedico>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/MedicoWS/addMedico"/></con:call></con:operation><con:operation id="11eb54d4-e4a5-444d-8c22-f6f153af677a" isOneWay="false" action="" name="deleteMedico" bindingOperationName="deleteMedico" type="Request-Response" outputName="deleteMedicoResponse" inputName="deleteMedico" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="55dbddd9-6cf1-4b74-b01e-6e3cee204c54" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:deleteMedico>\r
+         <arg0>?</arg0>\r
+      </int:deleteMedico>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/MedicoWS/deleteMedico"/></con:call></con:operation><con:operation id="e22056d1-8c5e-4c8e-95d4-ceea818dd592" isOneWay="false" action="" name="listMedicos" bindingOperationName="listMedicos" type="Request-Response" outputName="listMedicosResponse" inputName="listMedicos" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="769fb777-6555-4bf8-a43d-a41e16c9e552" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:listMedicos/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/MedicoWS/listMedicos"/></con:call></con:operation><con:operation id="b07d66f0-bf92-4b86-9af8-0ecc1b5f96d8" isOneWay="false" action="" name="updateMedico" bindingOperationName="updateMedico" type="Request-Response" outputName="updateMedicoResponse" inputName="updateMedico" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4c7b99e4-cdb2-4e5d-a24a-1e0e6daef8e8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/HospitalSystem-1.0-SNAPSHOT/MedicoWSimp</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.hospitalsystem.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <int:updateMedico>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <!--Optional:-->\r
+            <crm>?</crm>\r
+            <!--Optional:-->\r
+            <email>?</email>\r
+            <!--Optional:-->\r
+            <endereco>?</endereco>\r
+            <!--Optional:-->\r
+            <especialidade>?</especialidade>\r
+            <id>?</id>\r
+            <!--Optional:-->\r
+            <nome>?</nome>\r
+            <!--Optional:-->\r
+            <telefone>?</telefone>\r
+         </arg0>\r
+      </int:updateMedico>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hospitalsystem.example.com/MedicoWS/updateMedico"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
